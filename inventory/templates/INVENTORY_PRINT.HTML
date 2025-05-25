@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ username }}'s Inventory Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #555;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .total-summary {
+            margin-top: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: right;
+            padding-right: 10px;
+        }
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Inventory Report for {{ username }}</h1>
+
+    <div class="no-print" style="text-align: center; margin-bottom: 20px;">
+        <p>This is a print-friendly view of your inventory.</p>
+        <p>To save as PDF: Right-click anywhere on this page, choose "Print...", and select "Save as PDF" (or similar option depending on your browser).</p>
+        <button onclick="window.print()" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Print / Save as PDF</button>
+        <a href="{{ url_for('index') }}" style="display: inline-block; margin-left: 15px; padding: 10px 20px; background-color: #6c757d; color: white; border: none; border-radius: 5px; text-decoration: none;">Back to Dashboard</a>
+    </div>
+
+    {% if products %}
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>SKU</th>
+                <th>Total Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set grand_total_value = 0 %}
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>${{ "{:,.2f}".format(product.price) }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.sku }}</td>
+                <td>${{ "{:,.2f}".format(product.quantity * product.price) }}</td>
+            </tr>
+            {% set grand_total_value = grand_total_value + (product.quantity * product.price) %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="total-summary">
+        Grand Total Inventory Value: ${{ "{:,.2f}".format(grand_total_value) }}
+    </div>
+
+    {% else %}
+    <p style="text-align: center;">No products found in your inventory to display.</p>
+    {% endif %}
+
+</body>
+</html>

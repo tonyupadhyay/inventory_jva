@@ -1,0 +1,254 @@
+/* static/style.css */
+
+/* General Body and HTML Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* Ensure smooth scrolling for anchor links */
+    scroll-behavior: smooth;
+}
+
+body {
+    /* Set a fallback font if Inter from Google Fonts fails to load */
+    font-family: 'Inter', sans-serif, Arial, sans-serif;
+    line-height: 1.6;
+    color: #333; /* Darker text for readability */
+    background-color: #f8f9fa; /* Lighter background for the entire app */
+}
+
+/* Global Link Styles */
+a {
+    text-decoration: none;
+    color: white; /* A standard blue for links */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+a:hover {
+    color: #0d47a1; /* Darker blue on hover */
+    transform: translateY(-1px); /* Subtle lift effect */
+}
+
+/* Button Enhancements (beyond Tailwind's default) */
+button, .btn {
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    border: none; /* Ensure no default button borders */
+    outline: none; /* Remove outline on focus for cleaner look */
+}
+
+button:hover, .btn:hover {
+    transform: translateY(-2px); /* Lift button slightly on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+button:active, .btn:active {
+    transform: translateY(0); /* Press down effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Smaller shadow when active */
+}
+
+/* Form Element Focus Styles */
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #1a73e8; /* Blue border on focus */
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); /* Subtle blue glow */
+    outline: none; /* Remove default outline */
+}
+
+/* Card-like element styling (if not fully covered by Tailwind) */
+.card {
+    border-radius: 0.75rem; /* More rounded corners */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Soft shadow */
+    background-color: #ffffff;
+    padding: 1.5rem;
+}
+
+/* Table specific enhancements */
+table {
+    border-collapse: collapse; /* Collapse borders for cleaner look */
+}
+
+th, td {
+    border-bottom: 1px solid #e2e8f0; /* Light gray border for table rows */
+}
+
+thead th {
+    background-color: #edf2f7; /* Light gray background for table headers */
+    font-weight: 600;
+    color: #4a5568;
+}
+
+/* --- Specific styles for Forms (Login, Register, Add/Edit Product) --- */
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px); /* Adjust height to account for header/footer */
+    padding: 1rem; /* Add some padding for smaller screens */
+}
+
+.form-card {
+    background-color: #ffffff;
+    padding: 2.5rem; /* Increased padding */
+    border-radius: 0.75rem; /* Rounded corners */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 10px -2px rgba(0, 0, 0, 0.08); /* Stronger shadow */
+    width: 100%;
+    max-width: 500px; /* Max width for forms */
+    text-align: center;
+}
+
+.form-title {
+    font-size: 2.25rem; /* Larger title */
+    font-weight: 700; /* Bold font */
+    color: #1f2937; /* Darker text */
+    margin-bottom: 1.75rem; /* More space below title */
+}
+
+.form-group {
+    margin-bottom: 1.25rem; /* More space between form groups */
+    text-align: left; /* Align labels and inputs to the left */
+}
+
+.form-label {
+    display: block;
+    color: #374151; /* Darker label text */
+    font-size: 0.9rem; /* Slightly smaller font for labels */
+    font-weight: 600; /* Semi-bold labels */
+    margin-bottom: 0.5rem; /* Space between label and input */
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem; /* More padding inside inputs */
+    border: 1px solid #d1d5db; /* Light gray border */
+    border-radius: 0.5rem; /* Rounded input corners */
+    box-sizing: border-box; /* Include padding in width calculation */
+    font-size: 1rem;
+    color: #374151;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+    border-color: #2563eb; /* Blue border on focus */
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* Subtle blue glow */
+    outline: none;
+}
+
+.form-textarea {
+    min-height: 80px; /* Minimum height for textareas */
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.form-button {
+    width: 100%;
+    padding: 0.75rem 1.5rem; /* More padding for buttons */
+    background-color: #2563eb; /* Stronger blue */
+    color: white;
+    font-weight: 700; /* Bold text */
+    border-radius: 0.5rem; /* Rounded button corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.form-button:hover {
+    background-color: #1d4ed8; /* Darker blue on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.form-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.back-link {
+    display: inline-block; /* Allows padding and margin */
+    margin-top: 1.5rem; /* Space above link */
+    color: #2563eb;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+    color: #1d4ed8;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    body {
+        font-size: 0.95rem; /* Slightly smaller base font size */
+    }
+
+    .container {
+        padding: 0 1rem; /* Adjust padding for smaller screens */
+    }
+
+    /* Adjust table styles for better mobile viewing */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        margin-bottom: 1rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    /* Specific adjustments for product table cells */
+    .min-w-full td {
+        text-align: right;
+    }
+    .min-w-full td:first-child {
+        text-align: left; /* Keep product name left-aligned */
+    }
+    .min-w-full td:before {
+        text-align: left;
+    }
+
+    /* Adjust form container for smaller screens */
+    .form-container {
+        min-height: auto; /* Allow height to adjust */
+        padding: 1rem 0.5rem; /* Reduce horizontal padding */
+    }
+
+    .form-card {
+        padding: 1.5rem; /* Reduce padding for smaller screens */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+    }
+
+    .form-title {
+        font-size: 1.75rem; /* Smaller title font */
+        margin-bottom: 1.25rem;
+    }
+
+    .form-input, .form-button {
+        padding: 0.6rem 1rem; /* Slightly smaller padding for inputs/buttons */
+        font-size: 0.95rem;
+    }
+}

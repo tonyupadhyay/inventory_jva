@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Inventory Dashboard</h2>
+    <a href="/add">Add New Item</a>
+    <table border="1">
+        <tr><th>ID</th><th>Name</th><th>Qty</th><th>Description</th><th>Action</th></tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+            <td>{{ item[3] }}</td>
+            <td><a href="/delete/{{ item[0] }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <a href="{{ url_for('export_pdf') }}" class="form-button">📄 Export as PDF</a>
+
+</body>
+</html>
